@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: auth-service-v1
+server:
+  port: 8082
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authdb
+    username: postgres
+    password: admin123
+  jpa:
+    hibernate:
+      ddl-auto: update
+        
+jwt:
+  secret: "hJ9X5r6C0n9mGz6A1bX1N5Y3kZ2SxE8ZP0rA4B9M2D4="
