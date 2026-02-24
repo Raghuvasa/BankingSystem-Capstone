@@ -1,9 +1,9 @@
 spring:
   application:
-    name: auth-service
+    name: customer-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/authdb
+    url: jdbc:postgresql://localhost:5432/customerdb
     username: postgres
     password: admin123
   jpa:
@@ -12,7 +12,7 @@ spring:
     show-sql: true
 
 server:
-  port: 8082  
+  port: 8084 
 
 eureka:
   client:

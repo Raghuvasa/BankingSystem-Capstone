@@ -32,6 +32,10 @@ public class UserService {
         User user = new User();
         user.setUserName(request.username);
         user.setPassword(passwordEncoder.encode(request.password));
+        user.setUserRole(request.userRole);
+        user.setEmail(request.email);
+        user.setMobileNumber(request.mobileNumber);
+        
         
         log.info("Creating user in service class");
         return repository.save(user);

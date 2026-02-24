@@ -14,7 +14,7 @@ import com.vgr.account_service.entity.Account;
 import com.vgr.account_service.service.AccountService;
 
 @RestController
-@RequestMapping("/api/v1/accounts")
+@RequestMapping("/accounts")
 public class AccountController {
 	
 	private static final Logger log = LoggerFactory.getLogger(AccountController.class);

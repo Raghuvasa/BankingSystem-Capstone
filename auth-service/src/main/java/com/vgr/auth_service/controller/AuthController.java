@@ -20,7 +20,7 @@ import com.vgr.auth_service.service.UserService;
 import com.vgr.auth_service.util.JwtUtil;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/auth")
 public class AuthController {
 
 	private static final Logger log = LoggerFactory.getLogger(AuthController.class);
