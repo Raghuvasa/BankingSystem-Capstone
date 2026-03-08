@@ -2,27 +2,13 @@ spring:
   application:
     name: account-service
 
-  datasource:
-    url: jdbc:postgresql://localhost:5432/accountdb
-    username: postgres
-    password: admin123
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+  config:
+    import: optional:configserver:http://localhost:8087
 
 server:
-  port: 8081		
+  port: 8082
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka	
-
-logging:
-  level:
-    root: INFO
-    com.vgr: DEBUG   # your base package
-    org.springframework.web: INFO
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+      defaultZone: http://localhost:8761/eureka
