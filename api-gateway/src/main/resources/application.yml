@@ -1,19 +1,66 @@
 spring:
-  application:
-    name: api-gateway
+    application:
+        name: api-gateway
 
-  cloud:
-    gateway:
-      mvc:
-        routes:
-          - id: account-service
-            uri: http://localhost:8081/accounts
-            predicates:
-              - Path=/accounts/**
-          - id: auth-service
-            uri: http://localhost:8082/auth
-            predicates:
-              - Path=/auth/**
+    cloud:
+        gateway:
+            routes:
+                - id: auth-service-auth
+                  uri: lb://AUTH-SERVICE
+                  predicates:
+                      - Path=/auth/**
+#
+#                - id: auth-service-customers
+#                  uri: http://localhost:8082
+#                  predicates:
+#                      - Path=/customers/**      
+                                  
+                - id: account-service
+                  uri: lb://ACCOUNT-SERVICE
+                  predicates:
+                      - Path=/accounts/**
+                  filters:
+                      - JwtAuthenticationFilter
+
+                - id: transaction-service
+                  uri: lb://TRANSACTION-SERVICE
+                  predicates:
+                      - Path=/api/transactions/**
+
+                # 🔥 AUTH SERVICE SWAGGER DOCS
+                - id: auth-service-docs
+                  uri: lb://AUTH-SERVICE
+                  predicates:
+                      - Path=/auth-service/v3/api-docs
+                  filters:
+                      - RewritePath=/auth-service/(?<segment>.*), /$\{segment}
+                      
+                - id: transaction-service-docs
+                  uri: lb://TRANSACTION-SERVICE
+                  predicates:
+                      - Path=/transaction-service/v3/api-docs
+                  filters:
+                      - RewritePath=/transaction-service/(?<segment>.*), /$\{segment}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
 
 server:
-  port: 8888
+    port: 8080
+
+eureka:
+    client:
+        register-with-eureka: true
+        fetch-registry: true
+        service-url:
+            defaultZone: http://localhost:8761/eureka
+jwt:
+    secret: y6Xk9v2yM9m4Gf1mA8pQ0JxCk6f9Q2wE1Rr7Zx0M5A8=
+    expiration: 3600000 # 1 hour (ms)
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG    
