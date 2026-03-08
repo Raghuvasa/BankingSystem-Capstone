@@ -20,7 +20,7 @@ import com.vgr.auth_service.repository.OtpRepository;
 import com.vgr.auth_service.repository.UserRepository;
 
 @Service
-public class UserService {
+public class AuthService {
 
 	private static final Logger log = LoggerFactory.getLogger(UserService.class);
 	

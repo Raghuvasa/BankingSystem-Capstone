@@ -25,6 +25,9 @@ public class User {
     @Column(unique = true)
     private String email;
     
+    @Column
+    private boolean emailEnabled;
+    
     @Column(unique = true)
     private String mobileNumber;
 
@@ -43,17 +46,17 @@ public class User {
 	}
 
 	/**
-	 * @return the userName
+	 * @return the username
 	 */
-	public String getUserName() {
+	public String getUsername() {
 		return username;
 	}
 
 	/**
-	 * @param userName the userName to set
+	 * @param username the username to set
 	 */
-	public void setUserName(String userName) {
-		this.username = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	/**
@@ -99,6 +102,20 @@ public class User {
 	}
 
 	/**
+	 * @return the emailEnabled
+	 */
+	public boolean isEmailEnabled() {
+		return emailEnabled;
+	}
+
+	/**
+	 * @param emailEnabled the emailEnabled to set
+	 */
+	public void setEmailEnabled(boolean emailEnabled) {
+		this.emailEnabled = emailEnabled;
+	}
+
+	/**
 	 * @return the mobileNumber
 	 */
 	public String getMobileNumber() {
@@ -111,9 +128,6 @@ public class User {
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
-    
-    
-    
     
     
 }
